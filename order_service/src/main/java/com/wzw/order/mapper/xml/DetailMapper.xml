@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzw.order.mapper.DetailMapper">
+    <select id="number" resultType="java.lang.Integer">
+        select sum(product_quantity)
+        from order_detail
+        where product_id = #{id}
+    </select>
+    <select id="productId" resultType="java.lang.Integer">
+        select  product_id
+        from order_detail group by product_id
+    </select>
+    <select id="createTime" resultType="com.wzw.order.vo.BasicLineSaleVo">
+        select   DATE_FORMAT(create_time,'%Y-%m-%d') date,sum(product_quantity) stack
+        from order_detail group by date
+    </select>
+    <select id="stackedLineSale" resultType="com.wzw.order.vo.StackedLineSaleDatabase">
+        select distinct product_name                  name,
+                        dd.date,
+                        (select coalesce(sum(product_quantity),0)
+                         from order_detail
+                         where order_detail.product_name = name
+                           and date_format(order_detail.create_time,'%Y-%m-%d') = dd.date) count
+        from order_detail,
+            (select date_format(create_time, '%Y-%m-%d') date
+            from order_detail
+            group by date) dd
+        where product_name = #{name}
+    </select>
+
+    <select id="listName" resultType="String">
+        select distinct product_name from order_detail
+    </select>
+
+</mapper>

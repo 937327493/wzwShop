@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzw.order.mapper.MasterMapper">
+    <update id="cancel">
+        update order_master set order_status = 2 where order_id = #{param1} and buyer_openid = #{param2}
+    </update>
+    <update id="cancell">
+        update order_master set order_status = 2 where order_id = #{param1}
+    </update>
+
+    <update id="finish">
+        update order_master set order_status = 1 where order_id = #{param1}
+    </update>
+
+    <update id="pay">
+        update order_master set pay_status = 1 where order_id = #{param1} and buyer_openid = #{param2}
+    </update>
+</mapper>

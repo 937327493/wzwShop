@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: account-service
+  datasource:
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/uushop?serverTimezone=GMT%2B8
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    port: 6379
+#    host: 192.168.217.133
+    host: 127.0.0.1
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: com/wzw/account/mapper/xml/*.xml
+server:
+  port: 8084

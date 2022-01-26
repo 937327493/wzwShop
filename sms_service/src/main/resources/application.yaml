@@ -1,0 +1,14 @@
+server:
+  port: 8083
+jdwx:
+  url: https://way.jd.com/kaixintong/kaixintong
+  appkey: c9ad8d9892b8d96004fd0debec30102c
+  sign: wzwShop
+spring:
+  application:
+    name: sms-service
+  redis:
+    database: 0
+#    host: 192.168.217.133
+    port: 6379
+    host: 127.0.0.1

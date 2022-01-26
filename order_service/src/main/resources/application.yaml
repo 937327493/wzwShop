@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/uushop?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+server:
+  port: 8087
+rocketmq:
+#  name-server: 192.168.217.133:9876
+  producer:
+    group: order
+  name-server: 127.0.0.1:9876
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: com/wzw/order/mapper/xml/*.xml
